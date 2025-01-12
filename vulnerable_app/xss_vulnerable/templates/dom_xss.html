@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}DOM XSS Test{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-danger text-white">
+        <h3>DOM XSS Test</h3>
+    </div>
+    <div class="card-body">
+        <p>Enter a query parameter <code>?input=</code> in the URL to see the output dynamically rendered.</p>
+        <div id="output" class="alert alert-warning"></div>
+    </div>
+</div>
+<script>
+    function showInput() {
+        var query = new URLSearchParams(window.location.search).get('input');
+        if (query) {
+            document.getElementById('output').innerHTML = query; // Vulnerable to XSS
+        }
+    }
+    showInput();
+</script>
+{% endblock %}

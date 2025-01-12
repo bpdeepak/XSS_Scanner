@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Page{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-success text-white">
+        <h3>Search Page</h3>
+    </div>
+    <div class="card-body">
+        <form method="get">
+            <div class="mb-3">
+                <label for="query" class="form-label">Enter Query:</label>
+                <input type="text" id="query" name="query" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+        {% if query %}
+            <p class="mt-4">Search Results for: <strong>{{ query|safe }}</strong></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
